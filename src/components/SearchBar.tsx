@@ -101,6 +101,7 @@ const SearchBar = () => {
     <div
       ref={searchBarRef}
       className="relative w-full max-w-3xl mx-auto transition-all duration-300"
+      style={{ zIndex: 40 }} // Increase z-index for the entire search bar component
     >
       <form onSubmit={handleSearch} className="relative">
         <div

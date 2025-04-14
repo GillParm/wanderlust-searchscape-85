@@ -1,6 +1,7 @@
 
 import { motion } from "framer-motion";
-import { TrendingUp } from "lucide-react";
+import { TrendingUp, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 interface PopularSuggestionsProps {
   onSuggestionClick: (suggestion: string) => void;
@@ -12,7 +13,10 @@ interface TrendingItem {
 }
 
 const PopularSuggestions = ({ onSuggestionClick }: PopularSuggestionsProps) => {
-  const trendingDestinations: TrendingItem[] = [
+  const [showMoreDestinations, setShowMoreDestinations] = useState(false);
+  const [showMoreEvents, setShowMoreEvents] = useState(false);
+
+  const initialDestinations: TrendingItem[] = [
     {
       name: "Bali, Indonesia",
       imageUrl: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
@@ -31,7 +35,18 @@ const PopularSuggestions = ({ onSuggestionClick }: PopularSuggestionsProps) => {
     },
   ];
 
-  const trendingEvents: TrendingItem[] = [
+  const additionalDestinations: TrendingItem[] = [
+    {
+      name: "Amalfi Coast, Italy",
+      imageUrl: "https://images.unsplash.com/photo-1612698093158-e07ac200d44e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    },
+    {
+      name: "Banff National Park, Canada",
+      imageUrl: "https://images.unsplash.com/photo-1581088561839-29a5e8d5b451?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    },
+  ];
+
+  const initialEvents: TrendingItem[] = [
     {
       name: "New Year's Eve in New York",
       imageUrl: "https://images.unsplash.com/photo-1515388242805-b3488e247b3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
@@ -50,13 +65,32 @@ const PopularSuggestions = ({ onSuggestionClick }: PopularSuggestionsProps) => {
     },
   ];
 
+  const additionalEvents: TrendingItem[] = [
+    {
+      name: "Coachella Music Festival, USA",
+      imageUrl: "https://images.unsplash.com/photo-1507941097613-9f2157b69235?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    },
+    {
+      name: "Running of the Bulls, Spain",
+      imageUrl: "https://images.unsplash.com/photo-1565024144485-cfac1106bee6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+    },
+  ];
+
+  const trendingDestinations = showMoreDestinations 
+    ? [...initialDestinations, ...additionalDestinations]
+    : initialDestinations;
+
+  const trendingEvents = showMoreEvents
+    ? [...initialEvents, ...additionalEvents]
+    : initialEvents;
+
   return (
     <motion.div
       initial={{ opacity: 0, height: 0 }}
       animate={{ opacity: 1, height: "auto" }}
       exit={{ opacity: 0, height: 0 }}
       transition={{ duration: 0.3 }}
-      className="absolute z-10 w-full mt-2 bg-white rounded-2xl shadow-xl overflow-hidden"
+      className="absolute z-50 w-full mt-2 bg-white rounded-2xl shadow-xl overflow-hidden"
     >
       <div className="p-4">
         <div className="mb-6">
@@ -84,6 +118,15 @@ const PopularSuggestions = ({ onSuggestionClick }: PopularSuggestionsProps) => {
                 <span className="text-gray-800">{destination.name}</span>
               </div>
             ))}
+            
+            {!showMoreDestinations && (
+              <button
+                onClick={() => setShowMoreDestinations(true)}
+                className="w-full p-2 mt-2 text-sm text-travel-blue hover:bg-travel-light-blue rounded-lg transition-colors duration-200 flex items-center justify-center"
+              >
+                More destinations <ChevronDown className="ml-1" size={16} />
+              </button>
+            )}
           </div>
         </div>
 
@@ -112,6 +155,15 @@ const PopularSuggestions = ({ onSuggestionClick }: PopularSuggestionsProps) => {
                 <span className="text-gray-800">{event.name}</span>
               </div>
             ))}
+            
+            {!showMoreEvents && (
+              <button
+                onClick={() => setShowMoreEvents(true)}
+                className="w-full p-2 mt-2 text-sm text-travel-blue hover:bg-travel-light-blue rounded-lg transition-colors duration-200 flex items-center justify-center"
+              >
+                More events <ChevronDown className="ml-1" size={16} />
+              </button>
+            )}
           </div>
         </div>
       </div>
