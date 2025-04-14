@@ -92,23 +92,23 @@ const PopularSuggestions = ({ onSuggestionClick }: PopularSuggestionsProps) => {
       transition={{ duration: 0.3 }}
       className="absolute z-50 w-full mt-2 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-gray-100"
     >
-      <div className="p-6">
-        <div className="mb-8">
-          <div className="flex items-center mb-4">
-            <TrendingUp className="text-travel-blue mr-2" size={20} />
-            <h3 className="text-sm font-semibold tracking-wide text-gray-500">
-              TRENDING DESTINATIONS
+      <div className="p-4">
+        <div className="mb-4">
+          <div className="flex items-center mb-3">
+            <TrendingUp className="text-travel-blue mr-2" size={18} />
+            <h3 className="text-xs font-semibold tracking-wider text-gray-500 uppercase">
+              Trending Destinations
             </h3>
           </div>
           
-          <div className="space-y-4">
+          <div className="space-y-2">
             {trendingDestinations.map((destination, index) => (
               <div
                 key={index}
                 onClick={() => onSuggestionClick(destination.name)}
-                className="group p-3 hover:bg-travel-light-blue rounded-xl cursor-pointer transition-all duration-200 flex items-center hover:shadow-md"
+                className="group p-2 hover:bg-travel-light-blue rounded-lg cursor-pointer transition-all duration-200 flex items-center hover:shadow-sm"
               >
-                <div className="w-48 h-[108px] rounded-lg overflow-hidden flex-shrink-0 mr-4">
+                <div className="w-32 h-[72px] rounded-md overflow-hidden flex-shrink-0 mr-3">
                   <img 
                     src={destination.imageUrl} 
                     alt={destination.name}
@@ -116,10 +116,10 @@ const PopularSuggestions = ({ onSuggestionClick }: PopularSuggestionsProps) => {
                   />
                 </div>
                 <div>
-                  <span className="text-gray-900 font-medium text-lg group-hover:text-travel-blue transition-colors duration-200">
+                  <span className="text-gray-900 font-medium text-sm group-hover:text-travel-blue transition-colors duration-200 line-clamp-1">
                     {destination.name}
                   </span>
-                  <p className="text-gray-500 text-sm mt-1">Popular destination</p>
+                  <p className="text-gray-500 text-xs mt-0.5">Popular destination</p>
                 </div>
               </div>
             ))}
@@ -127,30 +127,30 @@ const PopularSuggestions = ({ onSuggestionClick }: PopularSuggestionsProps) => {
             {!showMoreDestinations && (
               <button
                 onClick={() => setShowMoreDestinations(true)}
-                className="w-full p-3 text-sm text-travel-blue hover:bg-travel-light-blue rounded-xl transition-colors duration-200 flex items-center justify-center font-medium"
+                className="w-full p-2 text-xs text-travel-blue hover:bg-travel-light-blue rounded-lg transition-colors duration-200 flex items-center justify-center font-medium"
               >
-                More destinations <ChevronDown className="ml-1" size={16} />
+                More destinations <ChevronDown className="ml-1" size={14} />
               </button>
             )}
           </div>
         </div>
 
         <div>
-          <div className="flex items-center mb-4">
-            <TrendingUp className="text-travel-blue mr-2" size={20} />
-            <h3 className="text-sm font-semibold tracking-wide text-gray-500">
-              TRENDING EVENTS
+          <div className="flex items-center mb-3">
+            <TrendingUp className="text-travel-blue mr-2" size={18} />
+            <h3 className="text-xs font-semibold tracking-wider text-gray-500 uppercase">
+              Trending Events
             </h3>
           </div>
           
-          <div className="space-y-4">
+          <div className="space-y-2">
             {trendingEvents.map((event, index) => (
               <div
                 key={index}
                 onClick={() => onSuggestionClick(event.name)}
-                className="group p-3 hover:bg-travel-light-blue rounded-xl cursor-pointer transition-all duration-200 flex items-center hover:shadow-md"
+                className="group p-2 hover:bg-travel-light-blue rounded-lg cursor-pointer transition-all duration-200 flex items-center hover:shadow-sm"
               >
-                <div className="w-48 h-[108px] rounded-lg overflow-hidden flex-shrink-0 mr-4">
+                <div className="w-32 h-[72px] rounded-md overflow-hidden flex-shrink-0 mr-3">
                   <img 
                     src={event.imageUrl} 
                     alt={event.name}
@@ -158,10 +158,10 @@ const PopularSuggestions = ({ onSuggestionClick }: PopularSuggestionsProps) => {
                   />
                 </div>
                 <div>
-                  <span className="text-gray-900 font-medium text-lg group-hover:text-travel-blue transition-colors duration-200">
+                  <span className="text-gray-900 font-medium text-sm group-hover:text-travel-blue transition-colors duration-200 line-clamp-1">
                     {event.name}
                   </span>
-                  <p className="text-gray-500 text-sm mt-1">Popular event</p>
+                  <p className="text-gray-500 text-xs mt-0.5">Popular event</p>
                 </div>
               </div>
             ))}
@@ -169,9 +169,9 @@ const PopularSuggestions = ({ onSuggestionClick }: PopularSuggestionsProps) => {
             {!showMoreEvents && (
               <button
                 onClick={() => setShowMoreEvents(true)}
-                className="w-full p-3 text-sm text-travel-blue hover:bg-travel-light-blue rounded-xl transition-colors duration-200 flex items-center justify-center font-medium"
+                className="w-full p-2 text-xs text-travel-blue hover:bg-travel-light-blue rounded-lg transition-colors duration-200 flex items-center justify-center font-medium"
               >
-                More events <ChevronDown className="ml-1" size={16} />
+                More events <ChevronDown className="ml-1" size={14} />
               </button>
             )}
           </div>
