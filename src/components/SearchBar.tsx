@@ -61,7 +61,7 @@ const SearchBar = () => {
             setIsTyping(false);
           }, 2000);
         }
-      }, 100);
+      }, 50);  // Changed from 100 to 50 to make typing faster
 
       return () => clearInterval(typingTimer);
     } else {
@@ -77,7 +77,7 @@ const SearchBar = () => {
             prevIndex === EXAMPLE_SEARCHES.length - 1 ? 0 : prevIndex + 1
           );
         }
-      }, 50);
+      }, 25);  // Changed from 50 to 25 to make deleting faster
 
       return () => clearInterval(deletingTimer);
     }
