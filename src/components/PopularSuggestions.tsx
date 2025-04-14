@@ -90,39 +90,44 @@ const PopularSuggestions = ({ onSuggestionClick }: PopularSuggestionsProps) => {
       animate={{ opacity: 1, height: "auto" }}
       exit={{ opacity: 0, height: 0 }}
       transition={{ duration: 0.3 }}
-      className="absolute z-50 w-full mt-2 bg-white rounded-2xl shadow-xl overflow-hidden"
+      className="absolute z-50 w-full mt-2 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-gray-100"
     >
-      <div className="p-4">
-        <div className="mb-6">
-          <div className="flex items-center mb-3">
-            <TrendingUp className="text-travel-blue mr-2" size={18} />
-            <h3 className="text-sm font-semibold text-gray-500">
+      <div className="p-6">
+        <div className="mb-8">
+          <div className="flex items-center mb-4">
+            <TrendingUp className="text-travel-blue mr-2" size={20} />
+            <h3 className="text-sm font-semibold tracking-wide text-gray-500">
               TRENDING DESTINATIONS
             </h3>
           </div>
           
-          <div className="space-y-3">
+          <div className="space-y-4">
             {trendingDestinations.map((destination, index) => (
               <div
                 key={index}
                 onClick={() => onSuggestionClick(destination.name)}
-                className="p-3 hover:bg-travel-light-blue rounded-lg cursor-pointer transition-colors duration-200 flex items-center"
+                className="group p-3 hover:bg-travel-light-blue rounded-xl cursor-pointer transition-all duration-200 flex items-center hover:shadow-md"
               >
-                <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 mr-3">
+                <div className="w-48 h-[108px] rounded-lg overflow-hidden flex-shrink-0 mr-4">
                   <img 
                     src={destination.imageUrl} 
                     alt={destination.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <span className="text-gray-800">{destination.name}</span>
+                <div>
+                  <span className="text-gray-900 font-medium text-lg group-hover:text-travel-blue transition-colors duration-200">
+                    {destination.name}
+                  </span>
+                  <p className="text-gray-500 text-sm mt-1">Popular destination</p>
+                </div>
               </div>
             ))}
             
             {!showMoreDestinations && (
               <button
                 onClick={() => setShowMoreDestinations(true)}
-                className="w-full p-2 mt-2 text-sm text-travel-blue hover:bg-travel-light-blue rounded-lg transition-colors duration-200 flex items-center justify-center"
+                className="w-full p-3 text-sm text-travel-blue hover:bg-travel-light-blue rounded-xl transition-colors duration-200 flex items-center justify-center font-medium"
               >
                 More destinations <ChevronDown className="ml-1" size={16} />
               </button>
@@ -131,35 +136,40 @@ const PopularSuggestions = ({ onSuggestionClick }: PopularSuggestionsProps) => {
         </div>
 
         <div>
-          <div className="flex items-center mb-3">
-            <TrendingUp className="text-travel-blue mr-2" size={18} />
-            <h3 className="text-sm font-semibold text-gray-500">
+          <div className="flex items-center mb-4">
+            <TrendingUp className="text-travel-blue mr-2" size={20} />
+            <h3 className="text-sm font-semibold tracking-wide text-gray-500">
               TRENDING EVENTS
             </h3>
           </div>
           
-          <div className="space-y-3">
+          <div className="space-y-4">
             {trendingEvents.map((event, index) => (
               <div
                 key={index}
                 onClick={() => onSuggestionClick(event.name)}
-                className="p-3 hover:bg-travel-light-blue rounded-lg cursor-pointer transition-colors duration-200 flex items-center"
+                className="group p-3 hover:bg-travel-light-blue rounded-xl cursor-pointer transition-all duration-200 flex items-center hover:shadow-md"
               >
-                <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 mr-3">
+                <div className="w-48 h-[108px] rounded-lg overflow-hidden flex-shrink-0 mr-4">
                   <img 
                     src={event.imageUrl} 
                     alt={event.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <span className="text-gray-800">{event.name}</span>
+                <div>
+                  <span className="text-gray-900 font-medium text-lg group-hover:text-travel-blue transition-colors duration-200">
+                    {event.name}
+                  </span>
+                  <p className="text-gray-500 text-sm mt-1">Popular event</p>
+                </div>
               </div>
             ))}
             
             {!showMoreEvents && (
               <button
                 onClick={() => setShowMoreEvents(true)}
-                className="w-full p-2 mt-2 text-sm text-travel-blue hover:bg-travel-light-blue rounded-lg transition-colors duration-200 flex items-center justify-center"
+                className="w-full p-3 text-sm text-travel-blue hover:bg-travel-light-blue rounded-xl transition-colors duration-200 flex items-center justify-center font-medium"
               >
                 More events <ChevronDown className="ml-1" size={16} />
               </button>
