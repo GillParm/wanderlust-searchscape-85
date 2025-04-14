@@ -81,10 +81,7 @@ const DestinationTypeCarousel = () => {
   };
 
   const handleDestinationTypeClick = (type: string) => {
-    console.log(`Selected destination type: ${type}`);
-    // In a real app, we would navigate to the search results page
-    // navigate(`/search-results?type=${encodeURIComponent(type)}`);
-    alert(`Selected destination type: ${type}`);
+    window.location.href = `/search-results?type=${encodeURIComponent(type)}`;
   };
 
   return (
@@ -114,10 +111,10 @@ const DestinationTypeCarousel = () => {
           {destinationTypes.map((type) => (
             <div
               key={type.id}
-              className="flex-shrink-0 w-64 snap-start cursor-pointer transform transition-transform duration-300 hover:scale-105"
+              className="flex-shrink-0 w-56 snap-start cursor-pointer transform transition-transform duration-300 hover:scale-105"
               onClick={() => handleDestinationTypeClick(type.id)}
             >
-              <div className="relative h-40 rounded-xl overflow-hidden">
+              <div className="relative h-32 rounded-xl overflow-hidden">
                 <img
                   src={type.imageUrl}
                   alt={type.title}
@@ -125,7 +122,7 @@ const DestinationTypeCarousel = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 p-4">
-                  <h3 className="text-white text-xl font-bold">{type.title}</h3>
+                  <h3 className="text-white text-lg font-bold">{type.title}</h3>
                 </div>
               </div>
             </div>
