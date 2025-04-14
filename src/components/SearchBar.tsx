@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { Search } from "lucide-react";
 import PopularSuggestions from "./PopularSuggestions";
@@ -54,10 +55,11 @@ const SearchBar = () => {
           setPlaceholder(currentText.substring(0, currentPosition + 1));
           currentPosition++;
         } else {
-          setIsTyping(false);
+          clearInterval(typingTimer);
+          // Wait 2 seconds after fully typing before starting to delete
           setTimeout(() => {
             setIsTyping(false);
-          }, 2000); // Pause at the end of typing
+          }, 2000);
         }
       }, 100);
 
@@ -68,6 +70,8 @@ const SearchBar = () => {
           setPlaceholder(currentText.substring(0, currentPosition - 1));
           currentPosition--;
         } else {
+          clearInterval(deletingTimer);
+          // Only change index and set isTyping back to true after fully deleting
           setIsTyping(true);
           setCurrentExampleIndex((prevIndex) => 
             prevIndex === EXAMPLE_SEARCHES.length - 1 ? 0 : prevIndex + 1
