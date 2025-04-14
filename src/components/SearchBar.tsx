@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Search } from "lucide-react";
 import PopularSuggestions from "./PopularSuggestions";
@@ -101,7 +100,7 @@ const SearchBar = () => {
     <div
       ref={searchBarRef}
       className="relative w-full max-w-3xl mx-auto transition-all duration-300"
-      style={{ zIndex: 40 }} // Increase z-index for the entire search bar component
+      style={{ zIndex: 100 }} // Increase z-index even more to ensure it's on top
     >
       <form onSubmit={handleSearch} className="relative">
         <div

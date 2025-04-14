@@ -26,7 +26,7 @@ const Index = () => {
         </div>
         
         {/* Search Bar */}
-        <div className="relative z-10 max-w-3xl mx-auto mb-20">
+        <div className="relative z-20 max-w-3xl mx-auto mb-20">
           <SearchBar />
         </div>
         
